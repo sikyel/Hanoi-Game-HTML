@@ -1,6 +1,7 @@
 let timerInterval;
 let timeElapsed = 0;
 let selectedDisk = null;
+let selectedTower = null;
 const highscores = [];
 
 function initGame() {
@@ -28,6 +29,7 @@ function initGame() {
     }, 1000);
 
     selectedDisk = null;
+    selectedTower = null;
 }
 
 function moveDisk(towerId) {
@@ -35,17 +37,27 @@ function moveDisk(towerId) {
     const topDisk = tower.lastElementChild;
 
     if (selectedDisk) {
-        if (!topDisk || selectedDisk.dataset.size < topDisk.dataset.size) {
+        if (selectedTower === tower){
+            selectedDisk.style.transform = "";
+            selectedDisk = null;
+            selectedTower = null;
+        }
+
+        else if (!topDisk || selectedDisk.dataset.size < topDisk.dataset.size) {
             tower.appendChild(selectedDisk);
             selectedDisk.style.transform = "";
             selectedDisk = null;
+            selectedTower = null;
 
             checkWin();
         } else {
             alert("Invalid move! Larger disks cannot be placed on smaller disks.");
+            tower.classList.add("shake");
+            setTimeout(() => tower.classList.remove("shake"),300);
         }
     } else if (topDisk) {
         selectedDisk = topDisk;
+        selectedTower = tower;
         selectedDisk.style.transform = "translateY(-30px)";
     }
 }
