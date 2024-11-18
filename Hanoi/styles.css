@@ -121,3 +121,14 @@ h2 {
 #highscore-table tbody tr:nth-child(even) {
     background-color: #ecf0f1;
 }
+
+@keyframes shake {
+    0%, 100% { transform: translate(0); }
+    25% { transform: translate(-10px); }
+    50% { transform: translate(10px); }
+    75% { transform: translate(-10px); }
+}
+
+.shake{
+    animation: shake 0.3s ease-in-out;
+}
