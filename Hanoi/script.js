@@ -8,16 +8,13 @@ function initGame() {
     const towers = [document.getElementById("tower1"), document.getElementById("tower2"), document.getElementById("tower3")];
     towers.forEach(tower => (tower.innerHTML = ""));
 
-    const startingTower = Math.floor(Math.random() * 3);
-    const disks = [];
+    const tower1 = document.getElementById("tower1");
     for (let i = 7; i >= 1; i--) {
         const disk = document.createElement("div");
         disk.classList.add("disk");
         disk.setAttribute("data-size", i);
-        disks.push(disk);
+        tower1.appendChild(disk);
     }
-
-    disks.forEach(disk => towers[startingTower].appendChild(disk));
 
     timeElapsed = 0;
     document.getElementById("timer").textContent = `Time: ${timeElapsed} seconds`;
@@ -37,13 +34,11 @@ function moveDisk(towerId) {
     const topDisk = tower.lastElementChild;
 
     if (selectedDisk) {
-        if (selectedTower === tower){
+        if (selectedTower === tower) {
             selectedDisk.style.transform = "";
             selectedDisk = null;
             selectedTower = null;
-        }
-
-        else if (!topDisk || selectedDisk.dataset.size < topDisk.dataset.size) {
+        } else if (!topDisk || selectedDisk.dataset.size < topDisk.dataset.size) {
             tower.appendChild(selectedDisk);
             selectedDisk.style.transform = "";
             selectedDisk = null;
@@ -51,9 +46,8 @@ function moveDisk(towerId) {
 
             checkWin();
         } else {
-            alert("Invalid move! Larger disks cannot be placed on smaller disks.");
             tower.classList.add("shake");
-            setTimeout(() => tower.classList.remove("shake"),300);
+            setTimeout(() => tower.classList.remove("shake"), 300);
         }
     } else if (topDisk) {
         selectedDisk = topDisk;
