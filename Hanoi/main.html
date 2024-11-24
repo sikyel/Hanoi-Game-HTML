@@ -9,27 +9,27 @@
 <body>
     <div class="game-container">
         <h1>Tower of Hanoi</h1>
-        <p id="instruction">Solve the puzzle by moving all 7 disks to another tower!</p>
-        <p id="timer">Time: 0 seconds</p>
         <div class="towers">
             <div id="tower1" class="tower" onclick="moveDisk(1)"></div>
             <div id="tower2" class="tower" onclick="moveDisk(2)"></div>
             <div id="tower3" class="tower" onclick="moveDisk(3)"></div>
         </div>
-        <button id="resetButton" onclick="resetGame()">Reset</button>
-
-        <h2>High Scores</h2>
-        <table id="highscore-table">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Time (seconds)</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <div class="controls">
+            <button onclick="resetGame()">Reset</button>
+            <button onclick="automateGame()">Automated Solve</button>
+        </div>
+        <p id="timer">Time: 0 seconds</p>
     </div>
+    <table id="highscore-table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Time (seconds)</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
     <script src="script.js"></script>
 </body>
 </html>
